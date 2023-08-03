@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "learning-packer-linux-aws"
+  ami_name      = "packer-myapp-ami"
   instance_type = "t2.micro"
   region        = "us-east-2" #Ohio
   source_ami    = "ami-097a2df4ac947655f"
@@ -16,7 +16,7 @@ source "amazon-ebs" "ubuntu" {
 }
 
 build {
-  name = "learning-packer"
+  name = "packer-myapp-ami"
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
@@ -26,7 +26,6 @@ build {
       "sudo su",
       "cd",
       "sudo apt-get update && sudo apt-get upgrade -y",
-      "sudo apt-get install libtomcat9-java -y",
       "sudo apt-get update -y",
       "sudo apt-get install tomcat9-admin tomcat9-common -y",
       "sudo apt-get install tomcat9 -y",
@@ -36,5 +35,3 @@ build {
     ]
   }
 }
-
-# To test ||!!!!
